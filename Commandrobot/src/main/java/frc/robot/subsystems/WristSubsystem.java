@@ -17,13 +17,27 @@ public class WristSubsystem extends SubsystemBase {
   private final Spark wristMotor = new Spark(5);
   private final Encoder wristEncoder = new Encoder(5, 6);
   private final double kEncoderTick2Meter = 1.0 / 4096.0 * 0.128 * Math.PI;
+  private PIDController wristPIDController = new PIDController(Constants.Wrist.P, Constants.Wrist.I, Constants.Wrist.D);
 
   public double getEncoderValues() {
     return (wristEncoder.get() * kEncoderTick2Meter);
   }
 
-  public void twistWrist() {
+  public double getWristAngle(){
+    double angle = wristEncoder.getPosition() * Constants.Wrist.angleConversionFactor;
+    return angle;
+  }
 
+  public void resetWristEncoder(){
+    wrist.getEncoder().setPosition(0.1);
+  }
+
+  public void wristForward(double position) {
+    wrist.set(position);
+  }
+
+  public void stopMovement() {
+    wrist.stopMotor();
   }
 
   public WristSubsystem() {}
@@ -56,6 +70,7 @@ public class WristSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Elevator encoder value", getEncoderValues());
+    SmartDashboard.putNumber("Wrist current value", wrist.getOutputCurrent()); 
   }
 
   public void setMotor(double speed) {
