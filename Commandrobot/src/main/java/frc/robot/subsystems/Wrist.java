@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class WristSubsystem extends SubsystemBase {
+public class Wrist extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
 
   private final Spark wristMotor = new Spark(5);
@@ -32,7 +32,7 @@ public class WristSubsystem extends SubsystemBase {
     wrist.getEncoder().setPosition(0.1);
   }
 
-  public void wristForward(double position) {
+  public void setWrist(double position) {
     wrist.set(position);
   }
 
@@ -40,7 +40,7 @@ public class WristSubsystem extends SubsystemBase {
     wrist.stopMotor();
   }
 
-  public WristSubsystem() {}
+  public Wrist() {}
 
   /**
    * Example command factory method.
