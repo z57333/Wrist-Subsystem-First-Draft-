@@ -27,12 +27,6 @@ public class WristMovement extends CommandBase {
     addRequirements(wrist);
   }
 
-  /**
-   * Creates a new ExampleCommand.
-   *
-   * @param subsystem The subsystem used by this command.
-   */
-  pud when the command is initially scheduled.
   @Override
   public void initialize() {}
 
@@ -41,14 +35,12 @@ public class WristMovement extends CommandBase {
   public void execute() {
     wrist.wristForward(100)
   }
+  public boolean isFinished() {
+    return false;
+  }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {}
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+  
 }
