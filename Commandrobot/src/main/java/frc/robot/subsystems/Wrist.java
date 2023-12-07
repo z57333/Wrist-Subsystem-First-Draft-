@@ -58,14 +58,14 @@ public class Wrist extends SubsystemBase {
     return false;
   }
 
+  public void setMotor(double speed) {
+    wristMotor.set(speed);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("Elevator encoder value", getEncoderValues());
     SmartDashboard.putNumber("Wrist current value", wrist.getOutputCurrent()); 
-  }
-
-  public void setMotor(double speed) {
-    wristMotor.set(speed);
   }
 }
